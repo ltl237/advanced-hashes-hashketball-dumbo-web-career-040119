@@ -133,22 +133,47 @@ def get_all_teams
 end
 
 def team_colors(team_input)
-	color_array = []
-	game_hash.map do |key,value|
+	game_hash.each do |key,value|
 		#puts [:colors]
 		if value[:team_name] == team_input
-			color_array << value[:colors]
+			return value[:colors]
 		end
 	end
-	color_array.flatten
+	
 end
 
 def team_names
 	#names = game_hash[:home][:team_name].merge(game_hash[:away][:team_name])	
-	names = []
-	names << game_hash[:home][:team_name]
-	names << game_hash[:away][:team_name]
+	#ames = []
+	#names << game_hash[:home][:team_name]
+	#names << game_hash[:away][:team_name]
+	game_hash.map do |key,value|
+	  value[:team_name]
+	end
+	#names
 end
+
+def num_to_name(your_num)
+  game_hash.map do |outerkey,outerval|
+    outerval[:players].map do |player_name,stats|
+      if stats[:number] == your_num
+        return player_name
+      end
+    end
+  end
+      
+      #stats[:players].map do |player_name,player_stats|
+      #  if player_stats[:number] == your_num
+      #    return player_name
+      #  end
+      #end
+    #end
+  # end
+  
+end
+
+puts num_to_name(0)
+
 
 def player_numbers(team_input)
 	num_array = []
